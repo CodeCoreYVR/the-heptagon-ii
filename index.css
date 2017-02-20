@@ -1,0 +1,140 @@
+html {
+  box-sizing: border-box;
+  font-family: "LingWai SC", cursive;
+  font-size: 18px;
+}
+
+html * {
+  font-family: inherit;
+  box-sizing: inherit;
+}
+
+input {
+  font-size: inherit;
+}
+
+.teams {
+  display: flex;
+}
+
+.teams > * {
+  flex-basis: 50%;
+}
+
+.teams .team {
+  margin: 3px;
+  padding: 3px;
+  border-radius: 3px;
+  background-color: black;
+
+  display: flex;
+  flex-flow: column;
+}
+
+.teams .team > *:last-child {
+  flex-grow: 1;
+}
+
+.teams .team.salmon {
+  background-color: salmon;
+}
+
+.teams .team.aquamarine {
+  background-color: aquamarine;
+}
+
+.teams .team > .title {
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-size: 2em;
+}
+
+.teams .team > .roster {
+  padding: 3px;
+  border-radius: 3px;
+  background-color: white;
+
+  display: flex;
+  flex-flow: row wrap;
+  align-content: flex-start;
+}
+
+.teams .team > .roster > * {
+  width: calc(100% - 6px);
+  margin: 3px;
+}
+
+@media (min-width: 825px) {
+  .team > .roster > * {
+    width: calc(50% - 6px);
+    margin: 3px;
+  }
+}
+
+.teams .doggo {
+  filter: grayscale(0.9);
+}
+
+.teams .doggo > h1 {
+  visibility: hidden;
+}
+
+.teams .doggo.active {
+  filter: grayscale(0);
+}
+
+.teams .doggo.active > h1 {
+  visibility: visible;
+}
+
+.doggo {
+  width: 200px;
+  height: 200px;
+  padding: 0.3rem;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: white;
+
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.doggo.blank {
+  background-color: black;
+}
+
+.doggo > h1 {
+  margin: 0;
+  padding: 0;
+  font-size: 2em;
+}
+
+.doggo > .wins,
+.doggo > .losses {
+  width: 100%;
+  display: flex;
+}
+
+.doggo > .wins > *:not(:last-child) {
+  margin-right: 0.3rem;
+}
+
+.icon {
+  height: 2em;
+}
+
+.ladder > ol {
+  margin: 0;
+}
+
+#toxic-tim { background-image: url(./images/toxic_tim.jpg); }
+#bumble-bertha { background-image: url(./images/bumble_bertha.jpg); }
+#nina-the-ninja { background-image: url(./images/nina_the_ninja.jpg); }
+#larry-the-lion { background-image: url(./images/larry_the_lion.jpg); }
+#inbread-dog { background-image: url(./images/inbread_dog.jpg); }
+#four-fists-larry { background-image: url(./images/four_fists_phil.jpg); }
