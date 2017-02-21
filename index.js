@@ -87,3 +87,74 @@ Qs('.team').forEach(function (node) {
     }
   })
 })
+
+// LAB: Recruiting New Fighters
+
+// grab the preview node
+const blankDoggo = Q('.doggo.blank')
+const blankDoggoH1 = blankDoggo.querySelector('h1')
+
+// replace the contents of the H1 inside the blank doggo with
+// the value of the name input every it changes
+Q('#name').addEventListener('input', function (event) {
+  blankDoggoH1.innerHTML = event.currentTarget.value;
+})
+
+// replace the background image of blank doggo only
+// once a value that ends in jpg, gif or png is entered
+Q('#picture-url').addEventListener('input', function (event) {
+  const {currentTarget} = event;
+
+  // check the last 3 characters of the picture url value to see
+  if ((/jpg|gif|png/i).test(currentTarget.value.slice(-3))) {
+    blankDoggo.style.backgroundImage = `url(${currentTarget.value})`;
+  }
+})
+
+// replace the contents of the H1 inside the blank doggo with
+// the value of the name input every it changes
+Q('#team-name').addEventListener('input', function (event) {
+  const {currentTarget} = event;
+
+  if (/salmon/i.test(currentTarget.value)) {
+    blankDoggo.style.border = 'solid medium salmon';
+  } else if (/aquamarine/i.test(currentTarget.value)) {
+    blankDoggo.style.border = 'solid medium aquamarine';
+  }
+})
+
+
+// STRETCH
+// create doggo from form
+function createDoggoFighter (name, pictureURL) {
+  const newDoggo = document.createElement('div')
+  // replace all white space characters with dashes
+  newDoggo.id = name.replace(/\s+/g, '-').toLowerCase();
+  newDoggo.className = 'doggo fighter selected';
+  // only be tested with local images such as
+  // `images/moneybags_michael.jpg`
+  newDoggo.style.backgroundImage = `url(${pictureURL})`;
+  newDoggo.innerHTML = `
+    <h1>${name}</h1>
+    <div class="wins"></div>
+    <div class="losses"></div>
+  `
+
+  return newDoggo;
+}
+
+Q('#application-form').addEventListener('submit', function (event) {
+  // we need this otherwise the browser will make a web request when we submit 
+  // the form
+  event.preventDefault();
+
+  const {currentTarget} = event;
+  const team = currentTarget.querySelector('#team-name').value;
+  const name = currentTarget.querySelector('#name').value;
+  const pictureURL = currentTarget.querySelector('#picture-url').value;
+
+  if (team === 'salmon' || team === 'aquamarine') {
+    // select the team from team name form
+    Q(`.team.${team} > .roster`).appendChild(createDoggoFighter(name, pictureURL))
+  }
+})
