@@ -158,3 +158,40 @@ Q('#application-form').addEventListener('submit', function (event) {
     Q(`.team.${team} > .roster`).appendChild(createDoggoFighter(name, pictureURL))
   }
 })
+
+// LAB User Friendly Shortcuts
+
+// we're using keydown, because arrow presses do not appear on keypress
+document.addEventListener('keydown', function (event) {
+  const {ctrlKey, keyCode} = event;
+  const key = String.fromCharCode(keyCode);
+
+  // isNaN is a function that checks if its argument is not a number
+  // there are many ways to do this check
+  if (ctrlKey && !isNaN(key)) {
+    const allDoggos = Qs('.doggo.fighter');
+    // select doggo at index of number pressed
+    selectDoggo(allDoggos[Number(key) - 1]);
+  }
+  console.dir(event)
+
+  //left arrow is keyCode 37
+  //we can learn this by looking at the event object
+  if (ctrlKey && keyCode === 37) {
+    // move selected doggo to team salmon when ctrl+⬅️
+    Q(`.team.salmon > .roster`).appendChild(getSelectedDoggo())
+  }
+
+  //left arrow is keyCode 39
+  if (ctrlKey && keyCode === 39) {
+    // move selected doggo to team aquamarin when ctrl+➡️
+    Q(`.team.aquamarine > .roster`).appendChild(getSelectedDoggo())
+  }
+
+  // STRETCH
+  // Backspace is keyCode 8
+  if (keyCode === 8) {
+    // delete selected doggo on backspace
+    getSelectedDoggo().remove();
+  }
+})
