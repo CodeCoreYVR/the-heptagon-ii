@@ -108,6 +108,15 @@ input {
   background-color: black;
 }
 
+.doggo.fighter.selected,
+.doggo.fighter.hovered {
+  filter: grayscale(0);
+}
+
+.doggo.fighter.selected > h1 {
+  visibility: visible;
+}
+
 .doggo > h1 {
   margin: 0;
   padding: 0;
